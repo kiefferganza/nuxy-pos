@@ -1,0 +1,155 @@
+export default () => {
+  return {
+    institution: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+      institutionTypes: [],
+    },
+    institutionRequest: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+      institutionTypes: [],
+    },
+    pendingInstitutionRequest: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+      institutionTypes: [],
+    },
+    institutionCreate: {
+      fetch: false,
+      error: '',
+    },
+    institutionRequestCreate: {
+      fetch: false,
+      error: '',
+    },
+    aggregators: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+      types: [],
+      dropdown: [],
+    },
+    aggregatorRequests: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+    },
+    pendingAggregatorRequests: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+    },
+    aggregatorInstitutions: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+    },
+    aggregatorCreate: {
+      fetch: false,
+      error: '',
+    },
+    billers: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+      billerCategories: [],
+    },
+    billerRequests: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+    },
+    pendingBillerRequests: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+    },
+    billerCreate: {
+      fetch: false,
+      error: '',
+    },
+    businessRules: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+    },
+    businessRulesRequests: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+    },
+    pendingBusinessRulesRequests: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+    },
+    businessRulesCreate: {
+      fetch: false,
+      error: '',
+    },
+    transactionFees: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+      transactionCodes: [],
+    },
+    transactionFeeRequests: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+    },
+    pendingTransactionFeeRequests: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+    },
+    transactionFeeCreate: {
+      fetch: false,
+      error: '',
+    },
+    transactionReversalCreate: {
+      fetch: false,
+      error: '',
+    },
+    transactionHistory: {
+      fetch: false,
+      reversalState: false,
+      reversalError: null,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+    },
+    transactionReversalRequest: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+    },
+    pendingTransactionReversalRequest: {
+      fetch: false,
+      paginationLength: 0,
+      page: 1,
+      list: [],
+    },
+  }
+}

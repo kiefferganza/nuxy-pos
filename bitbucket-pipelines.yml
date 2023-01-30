@@ -1,0 +1,68 @@
+pipelines:
+  branches:
+    master:
+      - step:
+          name: Deploy to Dev Server
+          deployment: Dev
+          runs-on:
+            - 'self.hosted'
+          script:
+           - pipe: atlassian/ssh-run:0.3.1
+             variables:
+               SSH_USER: 'root'
+               SERVER: '10.25.12.21'
+               COMMAND: 'cd /mnt/repo/ventamo_webadmin; git stash; git pull; cp -v -f --backup=numbered /mnt/env/dev/ventamo_webadmin.env .env; docker-compose build; docker-compose down -v; docker-compose up -d --remove-orphans -V'
+               MODE: 'command'
+      - step:
+          name: Deploy to QA Server
+          deployment: QA
+          runs-on:
+            - 'self.hosted'
+          script:
+           - pipe: atlassian/ssh-run:0.3.1
+             variables:
+               SSH_USER: 'root'
+               SERVER: '10.25.12.41'
+               COMMAND: 'cd /mnt/repo/ventamo_webadmin; git stash; git pull; cp -v -f --backup=numbered /mnt/env/qa/ventamo_webadmin.env .env; docker-compose build; docker-compose down -v; docker-compose up -d --remove-orphans -V'
+               MODE: 'command'
+    uat:
+      - step:
+          name: Deploy to UAT Server
+          deployment: uat
+          runs-on:
+            - 'self.hosted'
+          script:
+           - pipe: atlassian/ssh-run:0.3.1
+             variables:
+               SSH_USER: 'root'
+               SERVER: '10.25.12.31'
+               COMMAND: 'cd /mnt/repo/ventamo_webadmin; git stash; git pull; cp -v -f --backup=numbered /mnt/env/uat/ventamo_webadmin.env .env; docker-compose build; docker-compose down -v; docker-compose up -d --remove-orphans -V'
+               MODE: 'command'
+  tags:
+    'rc-*.*':
+      - step:
+          name: Deploy to DEMO/SIT Server
+          deployment: demo
+          runs-on:
+            - 'self.hosted'
+          script:
+           - pipe: atlassian/ssh-run:0.3.1
+             variables:
+               SSH_USER: 'root'
+               SERVER: '10.25.12.51'
+               COMMAND: 'cd /mnt/repo/ventamo_webadmin; git fetch --all; git checkout $BITBUCKET_TAG; cp -v -f --backup=numbered /mnt/env/demo/ventamo_webadmin.env .env; docker-compose build; docker-compose down -v; docker-compose up -d --remove-orphans -V'
+               MODE: 'command'
+  custom:
+   deploy_prod:
+     - step:
+         name: Deploy to Production
+         deployment: production
+         runs-on:
+           - 'self.hosted'
+         script:
+           - pipe: atlassian/ssh-run:0.3.1
+             variables:
+               SSH_USER: 'root'
+               SERVER: '10.25.12.51'
+               COMMAND: 'cd /mnt/repo/ventamo_webadmin; git fetch --all; git checkout $BITBUCKET_TAG; cp -v -f --backup=numbered /mnt/env/demo/ventamo_webadmin.env .env; docker-compose build; docker-compose down -v; docker-compose up -d --remove-orphans -V'
+               MODE: 'command'
